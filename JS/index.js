@@ -1,4 +1,6 @@
 // card - 1 start
+let donationHistory = [];
+
 
 document.getElementById('donate-money').addEventListener('click',
     function(event){
@@ -12,6 +14,7 @@ const donateBlance = parseFloat(document.getElementById('donate-balance').innerT
 
 let newBalance 
 
+// card - 1 start
  if(isNaN(addMoney )){
          newBalance = balance;
          alert('Invalid Input');
@@ -24,14 +27,25 @@ let newBalance
                 document.getElementById('donate-balance').innerText = newDonateBalance;
                
                 document.getElementById("my_modal_1").showModal();
+
+                const date = new Date()
+                donationHistory.push({
+                        amount: addMoney,
+                        title: 'Donate for Flood at Noakhali, Bangladesh',
+                        date: date
+                })
+
+                
         }
         else{
                 alert('Please Enter a Vaild Number.');
                
         }     
  }
+ 
 });
 // card - 1  end
+
 
 // card - 2 start
 
@@ -59,6 +73,13 @@ document.getElementById('donate-money2').addEventListener('click',
                     document.getElementById('donate-balance2').innerText = newDonateBalance;
                    
                     document.getElementById("my_modal_1").showModal();
+
+                    const date = new Date()
+                donationHistory.push({
+                        amount: addMoney,
+                        title: 'Donate for Flood Relief in Feni,Bangladesh',
+                        date: date
+                })
             }
             else{
                     alert('Please Enter a Vaild Number.');
@@ -95,6 +116,13 @@ document.getElementById('donate-money3').addEventListener('click',
                     document.getElementById('donate-balance3').innerText = newDonateBalance;
                    
                     document.getElementById("my_modal_1").showModal();
+
+                    const date = new Date()
+                    donationHistory.push({
+                            amount: addMoney,
+                            title: 'Aid for Injured in the Quota Movement',
+                            date: date
+                    })
             }
             else{
                     alert('Please Enter a Vaild Number.');
@@ -104,9 +132,9 @@ document.getElementById('donate-money3').addEventListener('click',
     });
     // card - 3  end    
 
+
+// button toogle
 function showDonationById(id){
-        // document.getElementById('show-donation-btn').classList.add('hidden');
-        // document.getElementById('show-history-btn').classList.add('hidden');
         document.getElementById('section').classList.add('hidden');
         document.getElementById('section-2').classList.add('hidden');
         document.getElementById('section-3').classList.add('hidden');
@@ -120,11 +148,24 @@ function showDonationById(id){
 document.getElementById('show-history-btn')
 .addEventListener('click', function(){
     console.log('show donation');
+    console.log(donationHistory);
     showDonationById('donation-history');
 
+    const historyList = document.getElementById('history-list')
+                donationHistory.forEach((donation)=>{
+                        const historyItem = document.createElement('div')
+                        const donationText = `
+                        <div class= "border rounded-lg shadow-lg py-5 mb-5">
+                        <div class="font-bold text-xl">${donation.amount} taka is ${donation.title}</div>
+                        <p>${donation.date}</p>
+                        </div>
+                
+                        `
+                        historyItem.innerHTML = donationText
+                        historyList.appendChild(historyItem)
+                })
+
 });
-
-
 
 // blog button and home button start
 
@@ -133,12 +174,3 @@ document.getElementById('btn-blog').addEventListener('click', function(){
     window.location.href="blog.html";
     
 });
-
-// home-btn
-document.getElementById('btn-home').addEventListener('click', function(){
-    window.location.href="index.html";
-    
-});
-// blog button and home button End
-
-
