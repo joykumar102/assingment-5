@@ -1,6 +1,5 @@
-// card - 1 start
-let donationHistory = [];
 
+let donationHistory = [];
 
 document.getElementById('donate-money').addEventListener('click',
     function(event){
@@ -27,6 +26,8 @@ let newBalance
                 document.getElementById('donate-balance').innerText = newDonateBalance;
                
                 document.getElementById("my_modal_1").showModal();
+                document.getElementById('input-add-money').value = (' ');
+
 
                 const date = new Date()
                 donationHistory.push({
@@ -34,7 +35,6 @@ let newBalance
                         title: 'Donate for Flood at Noakhali, Bangladesh',
                         date: date
                 })
-
                 
         }
         else{
@@ -43,6 +43,7 @@ let newBalance
         }     
  }
  
+
 });
 // card - 1  end
 
@@ -73,7 +74,7 @@ document.getElementById('donate-money2').addEventListener('click',
                     document.getElementById('donate-balance2').innerText = newDonateBalance;
                    
                     document.getElementById("my_modal_1").showModal();
-
+                    document.getElementById('input-add-money2').value = (' ');
                     const date = new Date()
                 donationHistory.push({
                         amount: addMoney,
@@ -116,6 +117,7 @@ document.getElementById('donate-money3').addEventListener('click',
                     document.getElementById('donate-balance3').innerText = newDonateBalance;
                    
                     document.getElementById("my_modal_1").showModal();
+                    document.getElementById('input-add-money3').value = (' ');
 
                     const date = new Date()
                     donationHistory.push({
@@ -130,19 +132,21 @@ document.getElementById('donate-money3').addEventListener('click',
             }     
      }
     });
-    // card - 3  end    
+    // card - 3  end 
+
+
 
 
 // button toogle
 function showDonationById(id){
-        document.getElementById('section').classList.add('hidden');
-        document.getElementById('section-2').classList.add('hidden');
-        document.getElementById('section-3').classList.add('hidden');
-
-        document.getElementById(id).classList.remove('hidden');
+        document.getElementById('main').classList.add('hidden');
         document.getElementById(id).classList.remove('hidden');
 };
-
+// donate btn
+document.getElementById('show-donation-btn').addEventListener('click', function(){
+        window.location.href="index.html";
+        
+    });
 
 // hiatory button click and enter to history list
 document.getElementById('show-history-btn')
@@ -156,8 +160,8 @@ document.getElementById('show-history-btn')
                         const historyItem = document.createElement('div')
                         const donationText = `
                         <div class= "border rounded-lg shadow-lg py-5 mb-5">
-                        <div class="font-bold text-xl">${donation.amount} taka is ${donation.title}</div>
-                        <p>${donation.date}</p>
+                        <div class="font-bold text-xl px-3">${donation.amount} taka is ${donation.title}</div>
+                        <p class="px-3">${donation.date}</p>
                         </div>
                 
                         `
